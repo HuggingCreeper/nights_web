@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:body>
+    <ui:composition template="/template/commonLayout.xhtml">
+        <ui:define name="content">
+            <h1>Accepted</h1>
+            <c:forEach var="events" items="#{homeBean.accepted}">
+                <h:form>
+                    <h:commandLink value="#{events.name}" action="#{pageHandler.showEvent(events.id)}"/>
+                    <br/>
+                </h:form>
+            </c:forEach>
+            <h2>Host</h2>
+            <c:forEach var="events" items="#{homeBean.hosting}">
+                <h:form>
+                    <h:commandLink value="#{events.name}" action="#{pageHandler.showEvent(events.id)}"/>
+                    <br/>
+                </h:form>
+            </c:forEach>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

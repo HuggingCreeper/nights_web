@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<head>
+    <title>Eventplaner</title>
+
+    <script type="text/javascript"
+            src="../js/jquery-3.2.1.min.js"/>
+    <script type="text/javascript"
+            src="../js/jquery.easy-autocomplete.min.js"/>
+
+    <link rel="stylesheet" href="../css/easy-autocomplete.min.css"/>
+    <link rel="stylesheet" href="../css/event.css"/>
+</head>
+
+<h:body>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h:form>
+            <h:commandLink action="myprofile?faces-redirect=true" value="My Profile"/>
+            <h:commandLink action="home?faces-redirect=true" value="Home"/>
+            <h:commandLink action="addEvent?faces-redirect=true" value="Add Events"/>
+            <h:commandLink action="invitations?faces-redirect=true" value="Invitations"/>
+            <h:commandLink action="adminEvents?faces-redirect=true" value="Hosting Events"/>
+            <h:commandLink action="#{loginBean.logout}" value="Logout"/>
+        </h:form>
+    </div>
+
+    <div id="page">
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        <div id="header">
+            <ui:insert name="header">
+                <ui:include src="/template/commonHeader.xhtml"/>
+            </ui:insert>
+        </div>
+
+        <div id="content">
+            <ui:insert name="content">
+                <ui:include src="/template/commonContent.xhtml"/>
+            </ui:insert>
+        </div>
+
+        <div id="footer">
+            <ui:insert name="footer">
+                <ui:include src="/template/commonFooter.xhtml"/>
+            </ui:insert>
+        </div>
+    </div>
+
+</h:body>
+<script type="text/javascript">
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("page").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("page").style.marginLeft = "0";
+    }
+</script>
+
+
+</html>

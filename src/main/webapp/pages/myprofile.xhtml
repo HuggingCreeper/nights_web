@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:head>
+    <title>Eventplaner</title>
+</h:head>
+<h:body>
+    <ui:composition template="/template/commonLayout.xhtml">
+        <ui:define name="content">
+            <h:panelGrid>
+                <h:outputLabel value="Username: " style="font-weight:bold"/>
+                <h:outputText value="#{loginBean.loginuser.username}"/>
+                <h:outputLabel value="Firstname: " style="font-weight:bold"/>
+                <h:outputText value="#{loginBean.loginuser.firstname}"/>
+                <h:outputLabel value="Lastname: " style="font-weight:bold"/>
+                <h:outputText value="#{loginBean.loginuser.lastname}"/>
+                <h:outputLabel value="Birthday: " style="font-weight:bold"/>
+                <h:outputText value="#{loginBean.loginuser.formatedDate}"/>
+                <h:outputLabel value="Address: " style="font-weight:bold"/>
+                <h:outputText value="#{loginBean.loginuser.address.street}"/>
+                <h:outputLabel value="Number: " style="font-weight:bold"/>
+                <h:outputText value="#{loginBean.loginuser.address.number}"/>
+                <h:outputLabel value="Place: " style="font-weight:bold"/>
+                <h:outputText value="#{loginBean.loginuser.place.place}"/>
+                <h:outputLabel value="Postcode: " style="font-weight:bold"/>
+                <h:outputText value="#{loginBean.loginuser.place.plz}"/>
+            </h:panelGrid>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

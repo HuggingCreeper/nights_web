@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:body>
+    <ui:composition template="/template/commonLayout.xhtml">
+        <ui:define name="header">
+            <h1>#{invitationBean.eventEntity.name}</h1>
+        </ui:define>
+        <ui:define name="content">
+            <h:form id="formId">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Date: " style="font-weight:bold"/>
+                    <h:outputText value="#{invitationBean.pageDate}"/>
+
+                    <h:outputLabel value="Time: " style="font-weight:bold"/>
+                    <h:outputText value="#{invitationBean.pageTime}"/>
+
+                    <h:outputLabel value="Description: " style="font-weight:bold"/>
+                    <h:outputText value="#{invitationBean.eventEntity.description}"/>
+
+                    <h:outputLabel value="Price: " style="font-weight:bold"/>
+                    <h:outputText value="#{invitationBean.eventEntity.price}"/>
+                </h:panelGrid>
+
+                <c:forEach var="guest" items="#{invitationBean.eventEntity.invited}">
+                    <h:outputText value="#{guest.user.firstname}"/>
+                    <h:outputText value=" "/>
+                    <h:outputText value="#{guest.user.lastname}"/>
+                    <h:outputText value=" "/>
+                    <h:outputText value="#{guest.status.type}"/>
+                    <br/>
+                </c:forEach>
+
+                <div id="map"/>
+                <h:commandButton action="#{invitationBean.accept}" value="Accept"/>
+                <h:commandButton action="#{invitationBean.decline}" value="Decline"/>
+            </h:form>
+            <h:outputScript>
+                var marker = null;
+
+                function myMap() {
+                var myLatLng = {lat: #{invitationBean.eventEntity.latitude}, lng: #{invitationBean.eventEntity.longitude}};
+                var myCenter = new google.maps.LatLng(myLatLng);
+                var mapCanvas = document.getElementById("map");
+                var mapOptions = {
+                center: myCenter,
+                disableDefaultUI: true,
+                zoom: 13,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(mapCanvas, mapOptions);
+
+                marker = new google.maps.Marker({
+                position: myLatLng,
+                animation: google.maps.Animation.DROP,
+                map: map
+                });
+                }
+            </h:outputScript>
+
+            <script type="text/javascript"
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVG5bffPnxRZkGFq9x7rpMl9PHEFCpAQs&amp;libraries=places&amp;callback=myMap"/>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+</html>
