@@ -1,1 +1,4 @@
-mvn install -DskipTests=true
+language: java
+
+script:
+- mvn install -DskipTests=true 
